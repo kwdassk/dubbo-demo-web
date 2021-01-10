@@ -5,16 +5,20 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import com.od.dubbotest.action.HelloAction;
+import com.od.dubbotest.action.ShAction;
 import com.od.dubbotest.action.BjAction;
+import java.util.logging.*;
 
 @SpringBootApplication
 public class Application {
     public static void main( String[] args) {
+	Logger log = Logger.getLogger("com"); 
     	ApplicationContext context=SpringApplication.run("classpath*:spring-config.xml",args);
     	HelloAction action=(HelloAction) context.getBean("helloAction");
         BjAction bjAction=(BjAction) context.getBean("bjAction");
-        System.out.println("Dubbo client started");
-        System.out.println("Dubbo 消费者端启动");
+        ShAction shAction=(ShAction) context.getBean("shAction");
+        log.info("Dubbo client started");
+        log.info("Dubbo 消费者端启动");
         //action.say("jack");
         //action.say("tom");
         //action.say("jim");
